@@ -1,0 +1,1 @@
+The proto profiles that represent that messages that go over the wire to perform various effects on a strain of LEDs.

@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+// Represents 
+message Pulse {
+    // The layer that perform this animation.
+    optional int32 layer = 1;
+    // 0-100, where the pulse starts/stops.
+    optional int32 start = 2;
+    // 0-100, where the pulse starts/stops.
+    optional int32 stop = 3;
+    // Number of ticks to slowly fade into the max value of the pulse.
+    optional int32 fad_in_ticks = 4;
+    // Number of ticks to slowly fade out to nothing.
+    optional int32 decay_ticks = 5;
+}
