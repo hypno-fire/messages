@@ -1,5 +1,12 @@
 syntax = "proto2";
 
+message HypnoMessage {
+    oneof message {
+        Pulse pulse = 1;
+        SolidColor solid_color = 2;
+    }
+}
+
 // Represents 
 message Pulse {
     // The layer that perform this animation.
@@ -12,4 +19,10 @@ message Pulse {
     optional int32 fad_in_ticks = 4;
     // Number of ticks to slowly fade out to nothing.
     optional int32 decay_ticks = 5;
+}
+
+// Represents 
+message SolidColor {
+    // The layer that perform this animation.
+    optional int32 layer = 1;
 }
