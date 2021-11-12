@@ -2,27 +2,43 @@ syntax = "proto2";
 
 message HypnoMessage {
     oneof message {
-        Pulse pulse = 1;
-        SolidColor solid_color = 2;
+        Reset reset = 1;
+        Pulse pulse = 2;
+        SolidColor solid_color = 3;
     }
+}
+// Reset all the layers/animations/etc.
+message Reset {
+
 }
 
 // Represents 
 message Pulse {
+    optional int32 universe = 1;
     // The layer that perform this animation.
-    optional int32 layer = 1;
+    optional int32 layer = 2;
     // 0-100, where the pulse starts/stops.
-    optional int32 start = 2;
+    optional int32 start = 3;
     // 0-100, where the pulse starts/stops.
-    optional int32 stop = 3;
+    optional int32 stop = 4;
     // Number of ticks to slowly fade into the max value of the pulse.
-    optional int32 fad_in_ticks = 4;
+    optional int32 fad_in_ticks = 5;
     // Number of ticks to slowly fade out to nothing.
-    optional int32 decay_ticks = 5;
+    optional int32 decay_ticks = 6;
 }
 
 // Represents 
 message SolidColor {
     // The layer that perform this animation.
     optional int32 layer = 1;
+    // The unique key for this animation.
+    optional int32 key = 2;
+    // the color (RGB) to show.
+    optional int32 color = 3;
+    // Number of ticks to slowly fade into the max value of the pulse.
+    optional int32 duration_ticks = 4;
+    // Number of ticks to slowly fade into the max value of the pulse.
+    optional int32 fad_in_ticks = 5;
+    // Number of ticks to slowly fade out to nothing.
+    optional int32 fad_out_ticks = 6;
 }
