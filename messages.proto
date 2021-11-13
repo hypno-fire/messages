@@ -5,10 +5,16 @@ import 'nanopb.proto';
 message HypnoMessage {
     oneof message {
         Reset reset = 1;
-        LayerConfiguration layer_configuration = 2;
-        UniverseConfiguration universe_configuration = 3;
-        Pulse pulse = 4;
+        Prime prime = 2;
+        LayerConfiguration layer_configuration = 3;
+        UniverseConfiguration universe_configuration = 4;
+        Pulse pulse = 5;
     }
+}
+
+// No-op, just makes sure the server is listening.
+message Prime {
+
 }
 
 // Reset all the layers/animations/etc.
