@@ -1,9 +1,13 @@
 syntax = "proto2";
 
+import 'nanopb.proto';
+
 message HypnoMessage {
     oneof message {
         Reset reset = 1;
-        Pulse pulse = 2;
+        LayerConfiguration layer_configuration = 2;
+        UniverseConfiguration universe_configuration = 3;
+        Pulse pulse = 4;
     }
 }
 
@@ -12,20 +16,47 @@ message Reset {
 
 }
 
+// A single universe, and where it's start/stop LED is.
+message Universe {
+    required int32 start_led = 1;
+    required int32 stop_led = 2;
+}
+
+// A message used to configure the universes.
+message UniverseConfiguration {
+    repeated Universe universes = 2;
+}
+
+// The type of layer brush to do when overlaying.
+enum LayerBrush {
+    ADD = 0;
+    SUBTRACT = 1;
+    OVERWRITE = 2;
+    OVERLAY = 3;
+    COMBINE = 4;
+    MASK = 5;
+}
+
+// Configure a layer.
+message LayerConfiguration {
+    required int32 layer_number = 1;
+    optional LayerBrush layer_brush = 2;
+}
+
 // Represents 
 message Pulse {
     // The area that this effect will be played on.
-    optional int32 universe = 1;
+    required int32 universe = 1;
     // The layer that perform this animation.
-    optional int32 layer = 2;
+    required int32 layer = 2;
     // The unique key for this animation.
-    optional int32 key = 3;
+    required int32 key = 3;
     // the color (RGB) to show.
-    optional int32 color = 4;
+    required int32 color = 4;
     // Number of ticks to slowly fade into the max value of the pulse.
-    optional int32 fade_in_ticks = 5;
+    required int32 fade_in_ticks = 5;
     // The total number of ticks to display the full pulse.
-    optional int32 duration_ticks = 6;
+    required int32 duration_ticks = 6;
     // Number of ticks to slowly fade out to nothing.
-    optional int32 fade_out_ticks = 7;
+    required int32 fade_out_ticks = 7;
 }
